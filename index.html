@@ -50,15 +50,16 @@
   var myHeaders = new Headers();
   var modal = document.getElementById("myModal");
 
-  var name = document.getElementById('name');
-  var email = document.getElementById('email');
+  var name = document.getElementById('name').value;
+  var email = document.getElementById('email').value;
   myHeaders.append("Authorization", "Basic Og==");
   myHeaders.append("Content-Type", "application/json");
+  console.log(name);
 
-var raw = JSON.stringify({
-  "name": name,
-  "email": email
-});
+  var raw = JSON.stringify({
+    "name": name,
+    "email": email
+  });
 
 var requestOptions = {
   method: 'POST',
