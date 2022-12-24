@@ -2,19 +2,21 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - responsive subscribe banner</title>
+  <title>FlutterArt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
 <div class="ch-newsletter">
+  <div >
+    <image src="./assets/Logo.png" class="center">
+  </div>
   <div class="container">
-    <div class="col-md-4 text-center" style="margin-bottom: 20px;">
-      <image src="./assets/Logo.png" class="newsletter-image">
-    </div>
-    <div class="col-md-8 text-center">
+    
+    <div >
       <div class="newsletter-headline">
         Automated Flutter Architecture
       </div>
@@ -24,7 +26,7 @@
       <form>
         <input id= 'name' class="newsletter-input" type="text" placeholder="Name">
         <input id= 'email' class="newsletter-input newsletter-input-email" type="email" placeholder="email@provider.com">
-        <input class="newsletter-submit2" type="submit" value="Submit" onclick="onSubmit()">
+        <input class="newsletter-submit2" type="button" value="Subcribe" onclick="onSubmit()">
       </form>
     </div>
   </div>
@@ -33,7 +35,7 @@
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close" onclick="window.location.reload()">&times;</span>
     <p>Some text in the Modal..</p>
   </div>
 
@@ -43,8 +45,11 @@
 <script>
   
  function onSubmit(){ 
+
+
   var myHeaders = new Headers();
   var modal = document.getElementById("myModal");
+
   var name = document.getElementById('name');
   var email = document.getElementById('email');
   myHeaders.append("Authorization", "Basic Og==");
@@ -76,7 +81,7 @@ fetch("https://us-central1-clenmo-test-server.cloudfunctions.net/addToWaitList",
       modal.style.display = "block";
     }})
   .catch(error => console.log('error', error));
-  
+  modal.style.display = "block";
   }
 </script>
 
