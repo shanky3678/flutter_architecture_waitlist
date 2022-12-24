@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - responsive subscribe banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+<div class="ch-newsletter">
+  <div class="container">
+    <div class="col-md-4 text-center" style="margin-bottom: 20px;">
+      <image src="./assets/Logo.png" class="newsletter-image">
+    </div>
+    <div class="col-md-8 text-center">
+      <div class="newsletter-headline">
+        Automated Flutter Architecture
+      </div>
+      <div class="newsletter-subtitle">
+        Join the waitlist.
+      </div>
+      <form>
+        <input id= 'name' class="newsletter-input" type="text" placeholder="Name">
+        <input id= 'email' class="newsletter-input newsletter-input-email" type="email" placeholder="email@provider.com">
+        <input class="newsletter-submit2" type="submit" value="Submit" onclick="onSubmit()">
+      </form>
+    </div>
+  </div>
+</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+<!-- partial -->
+
+<script>
+  
+ function onSubmit(){ 
+  var myHeaders = new Headers();
+  var modal = document.getElementById("myModal");
+  var name = document.getElementById('name');
+  var email = document.getElementById('email');
+  myHeaders.append("Authorization", "Basic Og==");
+  myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "name": name,
+  "email": email
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://us-central1-clenmo-test-server.cloudfunctions.net/addToWaitList", requestOptions)
+  .then(response => {
+    console.log(response);
+
+    if(response.body['status'] == "ok"){
+      modal.style.display = "block";
+    }
+  })
+  .then(result => {
+    console.log(result);
+    if(result.body['status'] == "ok"){
+      modal.style.display = "block";
+    }})
+  .catch(error => console.log('error', error));
+  
+  }
+</script>
+
+</body>
+</html>
