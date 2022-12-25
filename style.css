@@ -7,8 +7,12 @@
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
-  color: #3fcde6;
+  color: #28B6F6;
+  margin-bottom: 80px;
+  margin-top: 15px;
 }
+
+
 .newsletter-subtitle {
   text-align: center;
   font-size: 20px;
@@ -42,24 +46,33 @@
   margin-bottom: 20px;
 }
 
+@media screen and (max-width : 480px) {
+ .center{
+  width: 200px;
+ }
+
+ .form-css{
+  width: auto;
+  margin-left: 30px;
+  margin-right: 30px;
+ }
+}
+
 .newsletter-input {
   flex: 1;
-  border:0
-  ;
+  border:0;
   border-color: rgb(219, 219, 219);
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.6875;
   padding: .5625em 1.5em;
   border-radius: 4px;
-  margin-right: 10px;
   margin-bottom: 10px;
   width: 400px;
 }
 
 .newsletter-input:hover {
   outline: 1;
-  
 }
 
 .newsletter-input:focus, .newsletter-input:active {
@@ -121,7 +134,7 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 500px;
 }
 
 /* The Close Button */

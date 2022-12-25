@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>FlutterArt</title>
+  <title>Artic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
 
 </head>
@@ -20,13 +20,13 @@
       <div class="newsletter-headline">
         Automated Flutter Architecture
       </div>
-      <div class="newsletter-subtitle">
-        Join the waitlist.
-      </div>
-      <form>
+      
+      <form class="form-css">
         <input id= 'name' class="newsletter-input" type="text" placeholder="Name">
         <input id= 'email' class="newsletter-input newsletter-input-email" type="email" placeholder="email@provider.com">
-        <input class="newsletter-submit2" type="button" value="Subcribe" onclick="onSubmit()">
+        <br>
+        <br>
+        <input class="newsletter-submit2" type="button" value="Join waitlist" onclick="onSubmit()">
       </form>
     </div>
   </div>
@@ -36,7 +36,9 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" onclick="window.location.reload()">&times;</span>
-    <p>Some text in the Modal..</p>
+    <p
+    style="color: black;"
+    >You have been added for waitlist!</p>
   </div>
 
 </div>
@@ -70,14 +72,14 @@ var requestOptions = {
 
 fetch("https://us-central1-clenmo-test-server.cloudfunctions.net/addToWaitList", requestOptions)
   .then(response => {
-    console.log(response);
+    console.log(response.body);
 
     if(response.body['status'] == "ok"){
       modal.style.display = "block";
     }
   })
   .then(result => {
-    console.log(result);
+    console.log(result.body);
     if(result.body['status'] == "ok"){
       modal.style.display = "block";
     }})
