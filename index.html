@@ -36,9 +36,9 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" onclick="window.location.reload()">&times;</span>
-    <p
+    <p id="modal-message"
     style="color: black;"
-    >You have been added for waitlist!</p>
+    >You have been added to waitlist!</p>
   </div>
 
 </div>
@@ -51,6 +51,7 @@
 
   var myHeaders = new Headers();
   var modal = document.getElementById("myModal");
+  var modalMessage = document.getElementById("modal-message");
 
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
@@ -72,19 +73,25 @@ var requestOptions = {
 
 fetch("https://us-central1-clenmo-test-server.cloudfunctions.net/addToWaitList", requestOptions)
   .then(response => {
-    console.log(response.body);
+    console.log(response.status);
 
-    if(response.body['status'] == "ok"){
+    if(response.status == 100){
       modal.style.display = "block";
+      modalMessage.style.color = "green";
+
+    }else if(response.status == 302){
+      modal.style.display = "block";
+      modalMessage.style.color = "red";
+      modalMessage.innerHTML = 'Plz enter name and email!';
+    }else {
+      modal.style.display = "block";
+      modalMessage.style.color = "red";
+      modalMessage.innerHTML = 'Something went wrong, Try again!';
     }
   })
-  .then(result => {
-    console.log(result.body);
-    if(result.body['status'] == "ok"){
-      modal.style.display = "block";
-    }})
+
   .catch(error => console.log('error', error));
-  modal.style.display = "block";
+
   }
 </script>
 
