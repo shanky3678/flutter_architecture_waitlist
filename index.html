@@ -16,7 +16,7 @@
   </div>
   <div class="container">
     
-    <div >
+    <div>
       <div class="newsletter-headline">
         Automated Flutter Architecture
       </div>
@@ -55,6 +55,10 @@
 
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
+
+    
+
+
   myHeaders.append("Authorization", "Basic Og==");
   myHeaders.append("Content-Type", "application/json");
   console.log(name);
@@ -71,27 +75,35 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://us-central1-clenmo-test-server.cloudfunctions.net/addToWaitList", requestOptions)
-  .then(response => {
-    console.log(response.status);
-
-    if(response.status == 200){
-      modal.style.display = "block";
-      modalMessage.style.color = "green";
-
-    }else if(response.status == 302){
+if(name == "" && email == ""){
       modal.style.display = "block";
       modalMessage.style.color = "red";
-      modalMessage.innerHTML = 'Plz enter name and email!';
-    }else {
-      modal.style.display = "block";
-      modalMessage.style.color = "red";
-      modalMessage.innerHTML = 'Something went wrong, Try again!';
+      modalMessage.innerHTML = 'Plz enter your name and email';
     }
-  })
-
-  .catch(error => console.log('error', error));
-
+    else
+        {
+          fetch("https://us-central1-clenmo-test-server.cloudfunctions.net/addToWaitList", requestOptions)
+          .then(response => {
+            if(response.status == 200){
+              modal.style.display = "block";
+              modalMessage.style.color = "green";
+            }else if(response.status == 201){
+              modal.style.display = "block";
+              modalMessage.style.color = "blue";
+              modalMessage.innerHTML = 'You are Already in waitlist! ';
+            }else {
+              modal.style.display = "block";
+              modalMessage.style.color = "red";
+              modalMessage.innerHTML = 'Something went wrong, Plz Try again!';
+            }
+          } 
+          )
+          .catch(error => {
+            modal.style.display = "block";
+              modalMessage.style.color = "red";
+              modalMessage.innerHTML = 'Something went wrong, Plz try again later!';
+          });
+      }
   }
 </script>
 
